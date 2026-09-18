@@ -1,0 +1,6 @@
+{
+  "name": "BusGo",
+  "description": "All-India online bus booking platform connecting government RTCs and private fleets with real-time seat selector, instant ticket invoices, multiple payment modes, user booking history, and admin route & driver management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,115 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Passenger or administrator user account in BusGo",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth user identifier",
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of passenger",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address for ticket confirmations",
+          "maxLength": 150
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact phone number for SMS ticket updates",
+          "maxLength": 20
+        },
+        "role": {
+          "type": "string",
+          "description": "User permission role",
+          "enum": ["passenger", "admin"],
+          "maxLength": 20
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of account creation",
+          "maxLength": 50
+        }
+      },
+      "required": ["uid", "name", "email", "phone", "role"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Bus ticket reservation with PNR, seats, passenger list, and invoice receipt",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique booking identifier",
+          "maxLength": 64
+        },
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the passenger who made the booking",
+          "maxLength": 128
+        },
+        "pnr": {
+          "type": "string",
+          "description": "Indian bus PNR number (e.g. BG-849201)",
+          "maxLength": 32
+        },
+        "busId": {
+          "type": "string",
+          "description": "Reference ID of scheduled bus",
+          "maxLength": 64
+        },
+        "busNumber": {
+          "type": "string",
+          "description": "License registration plate of the bus",
+          "maxLength": 32
+        },
+        "operatorName": {
+          "type": "string",
+          "description": "Bus operator or RTC corporation name",
+          "maxLength": 100
+        },
+        "travelDate": {
+          "type": "string",
+          "description": "Journey travel date",
+          "maxLength": 32
+        },
+        "departureTime": {
+          "type": "string",
+          "description": "Departure time",
+          "maxLength": 20
+        },
+        "arrivalTime": {
+          "type": "string",
+          "description": "Arrival time",
+          "maxLength": 20
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when ticket was booked",
+          "maxLength": 50
+        }
+      },
+      "required": ["id", "userId", "pnr", "busId", "operatorName", "travelDate", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Stores user profiles and contact data"
+    },
+    "/users/{userId}/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Passenger ticket reservations and past receipts"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "System-wide booking registry for ticket verification and admin monitoring"
+    }
+  }
+}
