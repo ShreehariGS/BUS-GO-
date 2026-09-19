@@ -781,6 +781,7 @@ export default function App() {
             <span className="text-lg font-black text-red-600">bus<span className="text-slate-900">go</span></span>
             <span>• All-India Inter-State & RTC Bus Ticketing Network</span>
           </div>
+
           <p className="text-center sm:text-right">
             Official ticketing partner for KSRTC, TSRTC, APSRTC, MSRTC, Kerala RTC & top verified private fleets.
           </p>
